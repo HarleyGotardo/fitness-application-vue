@@ -1,4 +1,3 @@
-<!-- src/views/LandingPage.vue -->
 <script setup>
 import { RouterLink } from 'vue-router';
 </script>
@@ -6,6 +5,7 @@ import { RouterLink } from 'vue-router';
 <template>
   <div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
     <header class="text-center mb-8">
+      <img src="@/assets/muscle.png" alt="Fiber Muscle Logo" class="mx-auto mb-4 w-10 h-10" />
       <h1 class="text-5xl font-bold mb-4">Fiber Muscle</h1>
       <p class="text-lg text-gray-700">Your ultimate fitness companion</p>
     </header>
