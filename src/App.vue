@@ -1,4 +1,6 @@
+<!-- src/App.vue -->
 <script setup>
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -9,13 +11,16 @@
     </header>
 
     <div class="mb-8">
-      <router-link to="/login">
+      <RouterLink to="/login">
         <button class="bg-blue-500 text-white px-4 py-2 rounded mr-4">Login</button>
-      </router-link>
-      <router-link to="/register">
+      </RouterLink>
+      <RouterLink to="/register">
         <button class="bg-green-500 text-white px-4 py-2 rounded">Register</button>
-      </router-link>
+      </RouterLink>
     </div>
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
