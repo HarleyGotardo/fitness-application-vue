@@ -52,15 +52,15 @@ const routes = [
         path: 'progress',
         name: 'Progress',
         component: Progress
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: Dashboard
       }
     ],
     meta: { requiresAuth: true }
   },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: Dashboard
-  }
 ]
 
 const router = createRouter({
