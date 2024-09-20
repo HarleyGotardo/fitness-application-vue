@@ -1,14 +1,14 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
-import App from '@/App.vue'
-import Login from '@/views/Login.vue'
-import Register from '@/views/Register.vue'
+import LandingPage from '@/LandingPage.vue'
+import Login from '@/views/Auth/Login.vue'
+import Register from '@/views/Auth/Register.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'welcome',
-    component: App
+    name: 'landing-page',
+    component: LandingPage
   },
   {
     path: '/login',
