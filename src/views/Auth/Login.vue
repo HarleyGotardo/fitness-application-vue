@@ -35,6 +35,8 @@ const login = async () => {
 
   if (passwordMatch) {
     swal("Success", "Logged in successfully!", "success");
+    // Save user session
+    supabase.auth.setSession(user);
     // Redirect to /application
     router.push('/application/dashboard');
   } else {
