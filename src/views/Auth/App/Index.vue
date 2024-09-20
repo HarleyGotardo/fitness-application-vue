@@ -1,26 +1,26 @@
 <!-- src/views/Index.vue -->
 <script setup>
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-    <div class="bg-white shadow-md rounded-lg p-6 text-center">
-      <h1 class="text-3xl font-bold mb-4">Welcome to Fiber Muscle</h1>
-      <p class="text-lg text-gray-700 mb-4">You are successfully logged in!</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl px-4">
-        <div class="bg-blue-100 shadow-md rounded-lg p-6 text-center">
-          <h2 class="text-xl font-semibold mb-2">Personalized Workouts</h2>
-          <p class="text-gray-600">Get workout plans tailored to your fitness goals.</p>
-        </div>
-        <div class="bg-green-100 shadow-md rounded-lg p-6 text-center">
-          <h2 class="text-xl font-semibold mb-2">Nutrition Tracking</h2>
-          <p class="text-gray-600">Track your daily nutrition and stay on top of your diet.</p>
-        </div>
-        <div class="bg-yellow-100 shadow-md rounded-lg p-6 text-center">
-          <h2 class="text-xl font-semibold mb-2">Progress Monitoring</h2>
-          <p class="text-gray-600">Monitor your progress with detailed analytics and reports.</p>
-        </div>
+  <div class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <div class="bg-gray-800 text-white flex items-center justify-between p-4">
+      <div class="text-2xl font-bold">
+        Fiber Muscle
       </div>
+      <nav class="flex space-x-4">
+        <RouterLink to="/application/dashboard" class="py-2 px-4 rounded hover:bg-gray-700">Dashboard</RouterLink>
+        <RouterLink to="/application/exercises" class="py-2 px-4 rounded hover:bg-gray-700">Exercises</RouterLink>
+        <RouterLink to="/application/nutrition" class="py-2 px-4 rounded hover:bg-gray-700">Nutrition</RouterLink>
+        <RouterLink to="/application/progress" class="py-2 px-4 rounded hover:bg-gray-700">Progress</RouterLink>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 bg-gray-100 p-6">
+      <RouterView />
     </div>
   </div>
 </template>
