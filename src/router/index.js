@@ -9,6 +9,7 @@ import Exercises from '@/views/Auth/App/Exercises.vue'
 import Nutrition from '@/views/Auth/App/Nutrition.vue'
 import Progress from '@/views/Auth/App/Progress.vue'
 import Users from '@/views/Auth/App/Users.vue'
+import Exercises_Create from '@/views/Auth/App/Exercises_Create.vue'
 
 const routes = [
   {
@@ -49,6 +50,11 @@ const routes = [
         component: Exercises
       },
       {
+        path: 'exercises/create',
+        name: 'CreateExercise',
+        component: Exercises_Create
+      },
+      {
         path: 'nutrition',
         name: 'Nutrition',
         component: Nutrition
@@ -62,7 +68,7 @@ const routes = [
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: Dashboard
-      }
+      },
     ],
     meta: { requiresAuth: true }
   },

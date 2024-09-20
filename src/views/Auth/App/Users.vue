@@ -65,11 +65,11 @@ onMounted(() => {
         </li>
       </ul>
       <div class="flex justify-between mt-4">
-        <button @click="prevPage" :disabled="currentPage === 1" class="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-blue-700">
+        <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-gray-700">
           Previous
         </button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
           Next
         </button>
       </div>
