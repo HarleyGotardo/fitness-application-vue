@@ -36,7 +36,7 @@ const login = async () => {
   if (passwordMatch) {
     swal("Success", "Logged in successfully!", "success");
     // Redirect to /application
-    router.push('/application');
+    router.push('/application/dashboard');
   } else {
     swal("Error", "Invalid email or password.", "error");
   }
