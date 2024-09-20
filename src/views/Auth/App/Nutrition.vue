@@ -1,6 +1,5 @@
 <!-- src/views/Nutrition.vue -->
 <script setup>
-import Index from './Index.vue';
 </script>
 
 <template>
