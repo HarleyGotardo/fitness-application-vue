@@ -1,4 +1,3 @@
-<!-- src/views/Exercises.vue -->
 <script setup>
 import { ref, onMounted } from 'vue';
 import { supabase } from '@/lib/supabaseClient';
@@ -82,8 +81,13 @@ onMounted(async () => {
         <li v-for="exercise in exercises" :key="exercise.id" class="mb-3 p-4 bg-white shadow rounded">
           <p><strong>Name:</strong> {{ exercise.name }}</p>
           <p><strong>Description:</strong> {{ exercise.description }}</p>
-          <p><strong>Content:</strong> {{ exercise.content }}</p>
+          <p><strong>Content:</strong> <span v-html="exercise.content"></span></p>
           <p><strong>Assigned To:</strong> {{ exercise.assigned_to_name }}</p>
+          <router-link :to="`/application/exercises/${exercise.id}`" class="text-blue-500 hover:underline inline-block mt-2">
+            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+              View
+            </button>
+          </router-link>
         </li>
       </ul>
       <div class="flex justify-between mt-4">
@@ -96,8 +100,8 @@ onMounted(async () => {
         </button>
       </div>
     </div>
-    <div v-else>
-      <p>No exercises found.</p>
+    <div v-else class="flex justify-center items-center h-full min-h-screen">
+      <p class="text-center">No exercises found.</p>
     </div>
   </div>
 </template>
