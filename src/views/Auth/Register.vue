@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { supabase } from '@/lib/supabaseClient';
 import bcrypt from 'bcryptjs';
 import swal from 'sweetalert';
+import { useRouter } from 'vue-router';
 import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
 
@@ -21,6 +22,8 @@ const { handleSubmit, resetForm } = useForm({
 const { value: name, errorMessage: nameError } = useField('name');
 const { value: email, errorMessage: emailError } = useField('email');
 const { value: password, errorMessage: passwordError } = useField('password');
+
+const router = useRouter();
 
 const register = handleSubmit(async (values) => {
   // Hash the password
@@ -41,12 +44,15 @@ const register = handleSubmit(async (values) => {
 
   if (error) {
     console.error('Error:', error);
+    swal("Error", "An error occurred while registering. Please try again.", "error");
   } else {
     console.log('User registered:', data);
     // Show success alert
     swal("Success", "User registered successfully!", "success");
     // Clear form data
     resetForm();
+    // Redirect to login page
+    router.push('/login');
   }
 });
 </script>
@@ -92,6 +98,10 @@ const register = handleSubmit(async (values) => {
         </button>
       </div>
     </form>
+    <p class="mt-4">
+      Already have an account? 
+      <router-link to="/login" class="text-blue-500 hover:underline">Login</router-link>
+    </p>
   </div>
 </template>
 

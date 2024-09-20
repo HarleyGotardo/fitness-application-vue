@@ -75,6 +75,10 @@ const login = async () => {
         </button>
       </div>
     </form>
+    <p class="mt-4">
+      Don't have an account? 
+      <router-link to="/register" class="text-blue-500 hover:underline">Create Account</router-link>
+    </p>
   </div>
 </template>
 
