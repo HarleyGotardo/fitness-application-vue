@@ -75,7 +75,7 @@ onMounted(() => {
       </div>
     </div>
     <div v-else>
-      <p>No users found.</p>
+      <p class="text-center">No users found.</p>
     </div>
   </div>
 </template>
