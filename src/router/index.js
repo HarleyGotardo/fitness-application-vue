@@ -8,7 +8,7 @@ import Dashboard from '@/views/Auth/App/Dashboard.vue'
 import Exercises from '@/views/Auth/App/Exercises.vue'
 import Nutrition from '@/views/Auth/App/Nutrition.vue'
 import Progress from '@/views/Auth/App/Progress.vue'
-import NotFound from '@/views/NotFound.vue'
+import Users from '@/views/Auth/App/Users.vue'
 
 const routes = [
   {
@@ -37,6 +37,11 @@ const routes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: Dashboard
+      },
+      {
+        path: 'users',
+        name: 'Users',
+        component: Users
       },
       {
         path: 'exercises',

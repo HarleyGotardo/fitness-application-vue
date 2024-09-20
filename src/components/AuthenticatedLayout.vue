@@ -54,6 +54,7 @@ const logout = async () => {
       </div>
       <nav class="flex space-x-4">
         <RouterLink to="/application/dashboard" class="py-2 px-4 rounded hover:bg-gray-700" active-class="bg-gray-700">Dashboard</RouterLink>
+        <RouterLink to="/application/users" class="py-2 px-4 rounded hover:bg-gray-700" active-class="bg-gray-700">Users</RouterLink>
         <RouterLink to="/application/exercises" class="py-2 px-4 rounded hover:bg-gray-700" active-class="bg-gray-700">Exercises</RouterLink>
         <RouterLink to="/application/nutrition" class="py-2 px-4 rounded hover:bg-gray-700" active-class="bg-gray-700">Nutrition</RouterLink>
         <RouterLink to="/application/progress" class="py-2 px-4 rounded hover:bg-gray-700" active-class="bg-gray-700">Progress</RouterLink>
