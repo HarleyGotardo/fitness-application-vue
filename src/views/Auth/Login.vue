@@ -1,6 +1,6 @@
 <!-- src/views/Login.vue -->
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { supabase } from '@/lib/supabaseClient';
 import swal from 'sweetalert';
@@ -11,6 +11,13 @@ const router = useRouter();
 let data = ref({
   email: '',
   password: ''
+});
+
+onMounted(() => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    router.push('/application/dashboard');
+  }
 });
 
 const login = async () => {
@@ -36,7 +43,7 @@ const login = async () => {
   if (passwordMatch) {
     swal("Success", "Logged in successfully!", "success");
     // Save user session
-    supabase.auth.setSession(user);
+    localStorage.setItem('user', JSON.stringify(user));
     // Redirect to /application
     router.push('/application/dashboard');
   } else {

@@ -36,6 +36,7 @@ const logout = async () => {
       console.error('Error:', error);
       swal("Error", "An error occurred while logging out. Please try again.", "error");
     } else {
+      localStorage.removeItem('user');
       swal("Success", "Logged out successfully!", "success");
       router.push('/login');
     }

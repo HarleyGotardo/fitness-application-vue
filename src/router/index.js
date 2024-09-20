@@ -8,23 +8,26 @@ import Dashboard from '@/views/Auth/App/Dashboard.vue'
 import Exercises from '@/views/Auth/App/Exercises.vue'
 import Nutrition from '@/views/Auth/App/Nutrition.vue'
 import Progress from '@/views/Auth/App/Progress.vue'
-import { supabase } from '@/lib/supabaseClient'
+import NotFound from '@/views/NotFound.vue'
 
 const routes = [
   {
     path: '/',
     name: 'landing-page',
-    component: LandingPage
+    component: LandingPage,
+    meta: { requiresUnauth: true }
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: { requiresUnauth: true }
   },
   {
     path: '/register',
     name: 'register',
-    component: Register
+    component: Register,
+    meta: { requiresUnauth: true }
   },
   {
     path: '/application',
@@ -52,12 +55,28 @@ const routes = [
       }
     ],
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const user = localStorage.getItem('user');
+  if (to.matched.some(record => record.meta.requiresAuth) && !user) {
+    next({ name: 'login' });
+  } else if (to.matched.some(record => record.meta.requiresUnauth) && user) {
+    next({ name: 'NotFound' });
+  } else {
+    next();
+  }
 })
 
 export default router
