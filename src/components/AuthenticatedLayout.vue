@@ -49,7 +49,7 @@ const logout = async () => {
     <div class="bg-gray-800 text-white flex flex-col sm:flex-row items-center p-4">
       <div class="flex items-center w-full sm:w-auto mb-4 sm:mb-0">
         <img src="@/assets/muscle.png" alt="Fiber Muscle Logo" class="w-10 h-10 mr-2" />
-        <div class="text-2xl font-bold flex-1 mr-2">
+        <div class="text-2xl font-bold flex-1 mr-4">
           Fiber Muscle
         </div>
       </div>
