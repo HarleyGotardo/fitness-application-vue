@@ -3,14 +3,18 @@
 import { ref, onMounted } from 'vue';
 import { supabase } from '@/lib/supabaseClient';
 import swal from 'sweetalert';
+import { useRouter } from 'vue-router';
 
 const users = ref([]);
 const currentPage = ref(1);
 const pageSize = 5;
 const totalUsers = ref(0);
 const totalPages = ref(0);
+const loading = ref(true); // Add loading state
+const router = useRouter();
 
 const fetchUsers = async (page) => {
+  loading.value = true; // Set loading to true when fetching data
   const start = (page - 1) * pageSize;
   const end = start + pageSize - 1;
 
@@ -27,6 +31,7 @@ const fetchUsers = async (page) => {
     totalUsers.value = count;
     totalPages.value = Math.ceil(count / pageSize);
   }
+  loading.value = false; // Set loading to false after fetching data
 };
 
 const nextPage = () => {
@@ -48,6 +53,10 @@ const toPascalCase = (str) => {
     (w) => w[0].toUpperCase() + w.slice(1).toLowerCase());
 };
 
+const viewUserProfile = (userId) => {
+  router.push(`/application/users/${userId}`);
+};
+
 onMounted(() => {
   fetchUsers(currentPage.value);
 });
@@ -55,27 +64,32 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-gray-100 p-6">
-    <h1 class="text-3xl font-bold mb-4">Users</h1>
-    <div v-if="users.length">
-      <ul>
-        <li v-for="user in users" :key="user.id" class="mb-2 p-4 bg-white shadow rounded">
-          <p><strong>Name:</strong> {{ user.name }}</p>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Role:</strong> {{ toPascalCase(user.role) }}</p>
-        </li>
-      </ul>
-      <div class="flex justify-between mt-4">
-        <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-gray-700">
-          Previous
-        </button>
-        <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
-          Next
-        </button>
-      </div>
+    <h1 class="text-3xl font-bold mb-4">Members</h1>
+    <div v-if="loading" class="flex justify-center items-center h-full">
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
     </div>
     <div v-else>
-      <p class="text-center">No users found.</p>
+      <div v-if="users.length">
+        <ul>
+          <li v-for="user in users" :key="user.id" class="mb-2 p-4 bg-white shadow rounded cursor-pointer hover:bg-gray-800 hover:text-white" @click="viewUserProfile(user.id)">
+            <p><strong>Name:</strong> {{ user.name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Role:</strong> {{ toPascalCase(user.role) }}</p>
+          </li>
+        </ul>
+        <div class="flex justify-between mt-4">
+          <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-gray-700">
+            Previous
+          </button>
+          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+            Next
+          </button>
+        </div>
+      </div>
+      <div v-else>
+        <p class="text-center">No users found.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -85,5 +99,19 @@ onMounted(() => {
 
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+.loader {
+  border-top-color: #3498db;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

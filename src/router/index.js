@@ -11,7 +11,8 @@ import Progress from '@/views/Auth/App/Progress.vue'
 import Users from '@/views/Auth/App/Users.vue'
 import Exercises_Create from '@/views/Auth/App/Exercises_Create.vue'
 import Exercises_Show from '@/views/Auth/App/Exercises_Show.vue'
-import Exercises_Edit from '@/views/Auth/App/Exercises_Edit.vue' // Import the Exercises_Edit component
+import Exercises_Edit from '@/views/Auth/App/Exercises_Edit.vue'
+import Users_Show from '@/views/Auth/App/Users_Show.vue' // Import the Users_Show component
 
 const routes = [
   {
@@ -45,6 +46,11 @@ const routes = [
         path: 'users',
         name: 'Users',
         component: Users
+      },
+      {
+        path: 'users/:id',
+        name: 'ShowUser',
+        component: Users_Show
       },
       {
         path: 'exercises',
