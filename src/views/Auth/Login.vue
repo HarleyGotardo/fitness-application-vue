@@ -1,4 +1,3 @@
-<!-- src/views/Login.vue -->
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
@@ -41,11 +40,15 @@ const login = async () => {
   const passwordMatch = await bcrypt.compare(data.value.password, user.password);
 
   if (passwordMatch) {
-    swal("Logged In", "Logged in successfully!", "success");
-    // Save user session
-    localStorage.setItem('user', JSON.stringify(user));
-    // Redirect to /application
-    router.push('/application/dashboard');
+    if (user.role === 'admin') {
+      swal("Logged In", "Logged in successfully!", "success");
+      // Save user session
+      localStorage.setItem('user', JSON.stringify(user));
+      // Redirect to /application
+      router.push('/application/dashboard');
+    } else {
+      swal("Error", "You do not have the necessary permissions to log in.", "error");
+    }
   } else {
     swal("Error", "Invalid email or password.", "error");
   }
