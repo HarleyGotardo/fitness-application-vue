@@ -66,9 +66,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 p-6">
-    <div class="flex justify-between items-center mb-4">
-      <h1 class="text-3xl font-bold">Members</h1>
+  <div class="min-h-screen bg-gray-100 p-4 sm:p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+      <h1 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-0">Members</h1>
       <button @click="goToCreateUser" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">
         Add Member
       </button>
@@ -85,11 +85,11 @@ onMounted(() => {
             <p><strong>Role:</strong> {{ toPascalCase(user.role) }}</p>
           </li>
         </ul>
-        <div class="flex justify-between mt-4">
-          <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-gray-700">
+        <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
+          <button @click="prevPage" :disabled="currentPage === 1" class="bg-gray-800 text-white px-4 py-2 rounded disabled:opacity-50 hover:bg-gray-700 mb-2 sm:mb-0">
             Previous
           </button>
-          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <span class="mb-2 sm:mb-0">Page {{ currentPage }} of {{ totalPages }}</span>
           <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
             Next
           </button>
