@@ -1,4 +1,3 @@
-<!-- src/views/Users.vue -->
 <script setup>
 import { ref, onMounted } from 'vue';
 import { supabase } from '@/lib/supabaseClient';
@@ -57,6 +56,10 @@ const viewUserProfile = (userId) => {
   router.push(`/application/users/${userId}`);
 };
 
+const goToCreateUser = () => {
+  router.push('/application/users/create');
+};
+
 onMounted(() => {
   fetchUsers(currentPage.value);
 });
@@ -64,7 +67,12 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen bg-gray-100 p-6">
-    <h1 class="text-3xl font-bold mb-4">Members</h1>
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-3xl font-bold">Members</h1>
+      <button @click="goToCreateUser" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Add Member
+      </button>
+    </div>
     <div v-if="loading" class="flex justify-center items-center h-full">
       <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
     </div>

@@ -41,7 +41,7 @@ const login = async () => {
   const passwordMatch = await bcrypt.compare(data.value.password, user.password);
 
   if (passwordMatch) {
-    swal("Success", "Logged in successfully!", "success");
+    swal("Logged In", "Logged in successfully!", "success");
     // Save user session
     localStorage.setItem('user', JSON.stringify(user));
     // Redirect to /application

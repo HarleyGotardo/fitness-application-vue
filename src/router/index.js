@@ -12,7 +12,8 @@ import Users from '@/views/Auth/App/Users.vue'
 import Exercises_Create from '@/views/Auth/App/Exercises_Create.vue'
 import Exercises_Show from '@/views/Auth/App/Exercises_Show.vue'
 import Exercises_Edit from '@/views/Auth/App/Exercises_Edit.vue'
-import Users_Show from '@/views/Auth/App/Users_Show.vue' // Import the Users_Show component
+import Users_Show from '@/views/Auth/App/Users_Show.vue'
+import Users_Create from '@/views/Auth/App/Users_Create.vue' // Import the Users_Create component
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
         path: 'users',
         name: 'Users',
         component: Users
+      },
+      {
+        path: 'users/create',
+        name: 'CreateUser',
+        component: Users_Create
       },
       {
         path: 'users/:id',
